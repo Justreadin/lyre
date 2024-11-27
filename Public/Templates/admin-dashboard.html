@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <h1>Admin Dashboard</h1>
+      <button class="logout-btn">Logout</button>
+    </header>
+
+    <aside class="dashboard-sidebar">
+      <nav>
+        <ul>
+          <li><a href="#feedback-section">Feedback</a></li>
+          <li><a href="#users-section">Manage Users</a></li>
+          <li><a href="#stats-section">Statistics</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+      <section id="feedback-section">
+        <h2>Feedback</h2>
+        <table class="feedback-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User Email</th>
+              <th>Feedback</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Feedback data will be inserted here dynamically -->
+          </tbody>
+        </table>
+      </section>
+
+      <section id="users-section">
+        <h2>Manage Users</h2>
+        <p>Coming soon...</p>
+      </section>
+
+      <section id="stats-section">
+        <h2>Statistics</h2>
+        <p>Coming soon...</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin-dashboard.js"></script>
+</body>
+</html>

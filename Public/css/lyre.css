@@ -1,0 +1,1024 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.container {
+  position: absolute;
+  left: 69%;
+  top: 40%;
+  width: 170px;
+  height: 170px;
+}
+.container p {
+  position: absolute;
+  left: -60px;
+  top: 120px;
+  width: 500px;
+  color: rgb(98, 7, 202);
+  font-size: 25px;
+}
+body {
+  position: relative;
+  background: rgb(203, 230, 254);
+  height: 100vh;
+  width: 100%;
+  padding: 10px 10px;
+  overflow: hidden;
+}
+
+.column {
+  z-index: 4;
+  position: relative;
+  width: 6%;
+  top: 0px;
+  height: 100%;
+  left: 0px;
+  background: rgb(98, 7, 202);
+  border: 3px solid rgb(98, 7, 202);
+  box-shadow: -3px -3px 7px #ffffffb0, 3px 3px 5px rgba(94, 104, 121, 0.945);
+  border-radius: 5px;
+  flex-direction: column;
+  padding: 80px 15px 18px;
+}
+
+.menubar {
+  position: absolute;
+  width: 10%;
+  top: 2%;
+  height: 96%;
+  left: 0.3%;
+  z-index: 555;
+  background: rgba(98, 7, 202, 0.978);
+  border: 3px solid rgb(98, 7, 202);
+  box-shadow: 7px 6px solid rgb(174, 213, 247);
+  border-radius: 5px;
+  flex-direction: column;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  padding-bottom: 10px;
+  display: none;
+}
+.activebar {
+  z-index: 0;
+  display: block;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.column .profilepic,
+.menubar .profile_pic {
+  margin-bottom: 0px;
+}
+
+.column .profilepic .show_pic {
+  margin-top: 10px;
+  left: -1px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: white;
+  z-index: 1;
+}
+.menubar .profile_pic .show-pic {
+  margin-top: 20px;
+  margin-left: 0px;
+  height: 75px;
+  width: 66px;
+  border-radius: 50%;
+  border: 2px solid white;
+  z-index: 1;
+}
+
+.column .icons {
+  position: relative;
+  top: -120px;
+  margin-top: 200px;
+  padding-right: 1px;
+  left: -1px;
+  cursor: pointer;
+}
+
+.menubar .icon {
+  position: relative;
+  top: 60px;
+  padding-right: 1px;
+  left: 0px;
+  cursor: pointer;
+}
+
+.column .menubutton,
+.menubar .menubox {
+  margin: 10px 0;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+}
+.menubar .menubox p,
+.menubar .chat_btn p {
+  position: absolute;
+  left: -5px;
+}
+.menubar .archived_btn p,
+.menubar .feed_btn p {
+  position: absolute;
+  left: -14px;
+  color: black;
+}
+.column .chatbtn,
+.menubar .chat_btn {
+  margin: 30px 0;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+}
+
+.column .chatbtn:focus {
+  background: white;
+}
+
+.column .feed-btn,
+.menubar .feed_btn {
+  background-color: rgb(81, 12, 192);
+  color: white;
+  border: none;
+  margin: 20px 0;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  cursor: pointer;
+  position: fixed;
+}
+
+.feed-btn:hover {
+  color: rgb(81, 12, 192);
+  border: 1px solid rgb(81, 12, 192);
+}
+
+.column .archived-btn,
+.menubar .archived_btn {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+}
+
+
+.column .setting {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  color: white;
+  bottom: 10px;
+  left: -1px;
+}
+.menubar .settings {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  color: white;
+  bottom: 10px;
+  top: 260px;
+  left: 0px;
+}
+.setting_box {
+  display: none;
+  top: 300px;
+  left: 380px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.926);
+  height: 500px;
+  width: 450px;
+  border: 2px solid rgb(81, 12, 192);
+  border-radius: 10px;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+.activeset {
+  z-index: 10;
+  display: block;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.setting_box .set_header {
+  display: flex;
+  position: static;
+}
+.setting_box .set_header img {
+  height: 40px;
+  width: 40px;
+}
+.setting_box .set_header p {
+  font-size: 25px;
+  padding-top: 5px;
+  color: rgb(111, 5, 172);
+  font-weight: 500;
+  font-family: cursive;
+}
+.setting_box .set_header .set {
+  position: absolute;
+  color: rgb(31, 2, 105);
+  font-size: 25px;
+  font-weight: 800;
+  font-family: cursive;
+  padding-top: 50px;
+  text-align: center;
+  justify-self: center;
+  left: 60%;
+}
+.setting_box .set_header .exit-btn {
+  display: block;
+  color: rgb(31, 2, 105);
+  margin-top: 10px;
+  margin-left: 500px;
+  height: 30px;
+  width: 30px;
+  align-self: flex-end;
+  justify-self: flex-end;
+  float: right;
+}
+.setting_box ul {
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+.setting_box li {
+  cursor: pointer;
+  list-style: none;
+  color: rgb(111, 5, 172);
+  font-size: 20px;
+  font-family: cursive;
+  font-weight: 500;
+  padding-left: 25px;
+  padding-top: 25px;
+}
+.setting_box li:hover {
+  background: rgb(111, 5, 172);
+  color: white;
+}
+
+.col2 {
+  position: absolute;
+  width: 80%;
+  height: 640px;
+  left: 18%;
+  top: 14%;
+  border: 1px solid black;
+}
+
+.search {
+  position: absolute;
+  background: white;
+  top: -5px;
+  height: 45px;
+  width: 33%;
+  left: 7%;
+  margin-top: 10px;
+  margin-bottom: 1px;
+  border-radius: 5px;
+  box-shadow: -3px -3px 7px #ffffffb0, 3px 3px 5px rgba(94, 104, 121, 0.945);
+}
+.search-ipt {
+  width: 100%;
+  height: 45px;
+  font-size: 15px;
+  color: black;
+  border-radius: 5px;
+  padding-left: 80px;
+  border: 3px solid rgb(98, 7, 202);
+}
+.search-ipt:hover {
+  border: 2px solid rgb(98, 7, 202);
+}
+.search-btn {
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  top: 50px;
+  left: 20%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding-top: 8px;
+  padding-left: 8px;
+  background: rgb(98, 7, 202);
+}
+.contacts {
+  position: absolute;
+  height: 400px;
+  top: 250px;
+  background: white;
+  width: 350px;
+  border: 2px solid purple;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 5px;
+  left: 40%;
+  z-index: 11;
+  display: none;
+  padding-top: 30px;
+  padding-left: 10px;
+}
+.activecontact {
+  z-index: 999;
+  display: block;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.contacts h2 {
+  position: relative;
+  font-size: 23px;
+  font-weight: bold;
+  padding-left: 130px;
+  margin-bottom: 30px;
+  color: rgba(84, 0, 161, 0.985);
+  font-family: cursive;
+}
+.contacts .contact {
+  background: transparent;
+  height: 80px;
+  width: 100%;
+  border: 3px solid  rgba(98, 7, 202, 0.436);;
+  padding-top: 50px;
+  margin-bottom: 1px;
+  cursor: pointer;
+  margin-top: 5px;
+  display: inline-flex;
+  align-items: space-around;
+  justify-content: center;
+  pointer-events: auto;
+}
+.contacts .contact:hover {
+  background: rgba(98, 7, 202, 0.927);
+  border: 3px solid white;
+  color: white;
+}
+
+.contacts .contact p {
+  position: relative;
+  font-family: cursive;
+  font-size: 20px;
+  left: 20px;
+  font-weight: bold;
+  padding-left: ;
+  top: -60px;
+  padding-top: 20px;
+  color: blueviolet;
+}
+.contacts .contact img {
+  position: relative;
+  border: 1px solid blueviolet;
+  left: -0px;
+  top: -46px;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  padding-left: 70px;
+  align-self: flex-start;
+}
+.search .contacts .contact span {
+  position: relative;
+  font-size: 12px;
+  left: -50px;
+  top: 0px;
+  color: rgba(85, 81, 81, 0.908);
+  font-weight: 900;
+}
+.contacts .contact .add-contact-btn {
+  position: relative;
+  left: 20px;
+  top: -30px;
+  width: 100px;
+  height: 35px;
+  font-weight: 600;
+  font-family: cursive;
+  color: rgb(96, 14, 152);
+  justify-self: flex-end;
+}
+.section {
+  display: none;
+  pointer-events: none;
+  width: 32.9%;
+  height: 89%;
+  max-width: 900px;
+  position: fixed;
+  top: 50%; /* Adjusted to center vertically */
+  transform: translateY(-50%); /* Ensures vertical centering */
+  background: white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: -3px 7px #ffffffb0, 3px 3px 5px rgba(94, 104, 121, 0.945) inset;
+  left: 23.1%;
+  border: 2px solid rgb(98, 7, 202);
+}
+
+.active {
+  z-index: 1;
+  display: block;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+.Chatsection .chats-header,
+.archived .archives-header {
+  padding-left: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 100px;
+  background: rgb(98, 7, 202);
+  position: static;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+}
+.Chatsection .chats-header h1,
+.archived div h1 {
+  padding-top: 15px;
+  color: white;
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.Chatsection .col,
+.archived .archive_col {
+  overflow-x: hidden;
+  height: 410px;
+  width: 100%;
+  margin-bottom: 0px;
+  overflow-y: auto;
+}
+.Chatsection .col .AI_chat,
+.Chatsection .col .profile,
+.archived .archive_col .archive_sec {
+  background: transparent;
+  height: 75px;
+  width: 100%;
+  border: 3px solid whitesmoke;
+  pointer-events: auto;
+  margin-bottom: 0px;
+  box-sizing: border-box;
+}
+.Chatsection .col .AI_chat:hover,
+.Chatsection .col .profile:hover,
+.archived .archive_col .archive_sec:hover {
+  background: rgba(98, 7, 202, 0.827);
+  border: 3px solid white;
+  color: white;
+}
+.Chatsection .col .AI_chat p,
+.Chatsection .col .profile p,
+.archived .archive_col div p {
+  position: relative;
+  color: rgba(98, 7, 202, 0.827);
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 80px;
+  top: -60px;
+}
+.Chatsection .col .AI_chat img,
+.Chatsection .col .profile img,
+.archived .archive_col div img {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  padding-left: 0px;
+  padding-top: 0px;
+  border: 1px solid rgba(98, 7, 202, 0.827);
+}
+.Chatsection .col .profile h6,
+.archived .archive_col .archive_sec .phone {
+  position: relative;
+  top: -50px;
+  font-size: 12px;
+  padding-bottom: 40px;
+  left: 75px;
+}
+.menucontainer {
+  position: relative;
+  background: transparent;
+  width: 25px;
+  height: 75px;
+  top: -75px;
+  float: right;
+  justify-self: flex-end;
+  align-self: flex-end;
+  padding-top: 0px;
+  padding-left: 0px;
+}
+.archivecontainer {
+  position: relative;
+  background: transparent;
+  width: 25px;
+  height: 75px;
+  top: 75px;
+  float: right;
+  justify-self: flex-end;
+  align-self: flex-end;
+  padding-top: 0px;
+  padding-left: 0px;
+}
+.menuIcon,
+.MenuIcon {
+  cursor: pointer;
+  pointer-events: auto;
+  float: right;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+.menuIcon svg,
+.MenuIcon svg {
+  color: black;
+  width: 25px;
+  height: 25px;
+}
+.dropmenu {
+  position: absolute;
+  top: 100%;
+  left: -200%;
+  height: 100px;
+  width: 120px;
+  background-color: white;
+  border: 2px solid rgb(98, 7, 202);
+  padding: 10px;
+  display: none;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 99;
+  border-radius: 5px;
+}
+.activedropmenu{
+  z-index: 4;
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%) scale(1);
+}
+.droparchive {
+  position: absolute;
+  top: 150%;
+  left: -150%;
+  height: 40px;
+  width: 100px;
+  background-color: white;
+  border: 2px solid rgb(98, 7, 202);
+  display: none;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 99;
+  border-radius: 5px;
+}
+.activedroparchive {
+  z-index: 4;
+  display: block;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%) scale(1);
+}
+.dropmenu li,
+.droparchive li {
+  list-style: none;
+  height: 30px;
+  padding-left: 0px;
+  font-size: 15px;
+  padding-top: 0px;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.dropmenu li:hover{
+  background: rgb(98, 7, 202);
+  color: black;
+}
+.droparchive li:hover{
+  background: rgb(98, 7, 202);
+  color: black;
+  height: 20px;
+};
+.display-chat,
+.chat-box,
+.archived_chat {
+  position: relative;
+  width: 56%;
+  height: 99%;
+  background: white;
+  top: -780px;
+  left: 43%;
+  box-shadow: -3px -3px 7px #ffffffb0, 3px 3px 5px rgba(94, 104, 121, 0.945);
+  border-radius: 5px;
+  padding-top: 0px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.activebox,
+.activedisplay,
+.active_archived {
+  z-index: 3;
+  opacity: 1;
+  pointer-events: auto;
+  position: absolute;
+  top: 293px;
+  left: 50%;
+  width: 59%;
+  height: 99%;
+  border: 2px solid rgb(98, 7, 202);
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow: -3px 7px #ffffffb0, 3px 3px 5px rgba(94, 104, 121, 0.945) inset;
+}
+.display-chat .display-header,
+.chat-box .chat-header,
+.group_chat .group-header,
+.archived_chat .archived-header {
+  height: 85px;
+  width: 100%;
+  position: static;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 100px;
+  color: white;
+  padding-top: 20px;
+  background: rgb(98, 7, 202);
+  border-top: 2px solid rgb(98, 7, 202);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.display-chat .display-header .previous,
+.group_chat .group-header .previous,
+.archived_chat .archived-header .archive_previous {
+  display: none;
+}
+.chat-box .chat-header svg {
+  display: none;
+}
+
+.display-chat .display-header img,
+.archived_chat .archived-header img {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  left: 50px;
+  top: 10px;
+}
+
+.chat-box .chat-header img {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  left: 50px;
+  top: -5px;
+}
+
+.display-chat .display-header .display-title,
+.group_chat .group-header .group-title,
+.archived_chat .archive-header .archived-title,
+.chat-box .chat-header p {
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 100px;
+  color: white;
+  padding-top: 5px;
+}
+.display-chat .display-content,
+.group_chat .group-content,
+.archived_chat .archived-content,
+.chat-box .chatsbox {
+  margin-top: 30px;
+  padding: 30px 20px 70px;
+  overflow-y: auto;
+  height: 450px;
+}
+
+.chat-box .chatsbox .chatdetail,
+.group_chat .group-content .groupdetail,
+.archived_chat .archived-content .archivedetail,
+.display-chat .display-content .displaydetail {
+  position: fixed;
+  color: grey;
+  background: rgba(255, 255, 255, 0.281);
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  font-size: 12px;
+  top: 90px;
+  left: 270px;
+}
+
+.display-chat .display,
+.group_chat .groups,
+.archived_chat .archives,
+.chatsbox .chat {
+  line-break: normal;
+  list-style: none;
+}
+
+.chatsbox .chat p {
+  padding: 12px 6px;
+  max-width: 75%;
+  color: aliceblue;
+  font-size: 0.75rem;
+  border-radius: 10px 10px 0 10px;
+  background: rgb(98, 7, 202);
+}
+
+/* General incoming message styles */
+.display-content .incoming,
+.group-content .incoming,
+.archived-content .incoming,
+.chat-box .incoming p {
+  justify-self: flex-start; /* Aligns incoming messages to the left (standard for chats) */
+  color: black;
+  background: whitesmoke;
+  border-radius: 10px 10px 10px 0; /* Rounded corners for incoming messages */
+  list-style: none;
+  padding: 12px 8px; /* Adjusted padding for better spacing */
+  font-size: 0.85rem; /* Slightly increased font size for readability */
+  word-wrap: break-word; /* Ensures long words wrap properly */
+  overflow-wrap: break-word; /* Modern alternative for breaking long words */
+  white-space: normal; /* Ensures content wraps to the next line if needed */
+  margin-bottom: 8px; /* Adds spacing between consecutive messages */
+  max-width: 70%; /* Limits message width for a better layout */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+}
+
+/* Special styles for incoming text inside chat boxes */
+.chat-box .incoming p {
+  margin: 0; /* Removes default paragraph margins */
+  padding: 10px 8px; /* Consistent padding inside text */
+  border-radius: inherit; /* Ensures consistent border-radius */
+  background: inherit; /* Matches parent background */
+  color: inherit; /* Matches parent text color */
+}
+
+/* Optional: Add hover effect for better interactivity */
+.display-content .incoming:hover,
+.group-content .incoming:hover,
+.archived-content .incoming:hover,
+.chat-box .incoming p:hover {
+  background: #f0f0f0; /* Slightly darker shade for hover effect */
+  cursor: pointer; /* Indicates interactivity (if clickable) */
+}
+
+.chat-box .incoming span {
+  height: 32px;
+  width: 32px;
+  color: antiquewhite;
+  align-self: flex-end;
+  background: rgb(98, 7, 202);
+  text-align: center;
+  line-height: 32px;
+  border-radius: 4px;
+  margin: 0 10px 7px 0;
+}
+/* General outgoing message styles */
+.display-content .exit,
+.group-content .exit,
+.archived-content .exit,
+.chatsbox .outgoing {
+  justify-self: flex-end; /* Aligns outgoing messages to the right */
+  margin: 12px 0; /* Reduced margin for better spacing */
+  padding: 12px 8px; /* Adjusted padding for a balanced look */
+  max-width: 70%; /* Limits message width for a tidy layout */
+  color: #fff; /* Clear and readable text on dark background */
+  font-size: 0.75rem; /* Slightly increased font size for readability */
+  border-radius: 10px 10px 0 10px; /* Rounded corners for outgoing messages */
+  background: #6207ca; /* Dark purple for outgoing message bubbles */
+  word-wrap: break-word; /* Ensures long words wrap properly */
+  overflow-wrap: break-word; /* Modern alternative for breaking long words */
+  white-space: normal; /* Allows multi-line wrapping */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a modern look */
+  text-align: left; /* Ensures text aligns properly within the bubble */
+}
+
+/* Additional styling for outgoing messages in chat boxes */
+.chatsbox .outgoing {
+  display: flex;
+  justify-content: flex-end; /* Aligns outgoing messages to the right */
+  margin: 12px 0; /* Consistent spacing between messages */
+  padding: 0; /* Ensures consistent padding */
+}
+
+/* Optional: Add hover effect for better interactivity */
+.display-content .exit:hover,
+.group-content .exit:hover,
+.archived-content .exit:hover,
+.chatsbox .outgoing:hover {
+  background: #7a2ae6; /* Slightly lighter shade for hover effect */
+  cursor: pointer; /* Indicates interactivity (if clickable) */
+}
+
+/* Optional: Add animations for smoother transitions */
+.display-content .exit,
+.group-content .exit,
+.archived-content .exit,
+.chatsbox .outgoing {
+  transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth background and shadow transitions */
+}
+.display-chat .display-input,
+.group_chat .group-input,
+.archived_chat .archived-input,
+.chat-box .chat-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  background: white;
+  padding: 5px 20px;
+  border-top: 1px solid grey;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.display-input textarea,
+.group-input textarea,
+.archived-input textarea,
+.chat-input textarea {
+  height: 45px;
+  width: 90%;
+  border: none;
+  resize: none;
+  font-size: 25px;
+  padding-top: 12px;
+  padding-bottom: 11px;
+  border-bottom-left-radius: 5px;
+  border: 2px solid rgba(98, 7, 202, 0.856);
+}
+.display-input span,
+.group-input span,
+.archived-input span,
+.chat-input span {
+  align-self: flex-end;
+  height: 45px;
+  line-height: 45px;
+  color: blueviolet;
+  cursor: pointer;
+  width: 55px;
+  visibility: hidden;
+}
+.display-input textarea:valid ~ span,
+.group-input textarea:valid ~ span,
+.archived-input textarea:valid ~ span,
+.chat-input textarea:valid ~ span {
+  visibility: visible;
+}
+
+.feedback-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.feedback-modal-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.close-modal {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: red;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  border: 1px solid rgb(81, 12, 192);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: rgb(81, 12, 192);
+}
+
+.submit-feedback {
+  background-color: rgb(81, 12, 192);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-feedback:hover {
+  background-color: white;
+  color: rgb(81, 12, 192);
+  border: 1px solid rgb(81, 12, 192);
+}
+
+.send-invite,
+.close-invite {
+  padding: 10px 20px;
+  border: none;
+  background-color: rgba(98, 7, 202, 0.978); /* Theme primary color */
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.send-invite:hover,
+.close-invite:hover {
+  background-color: rgba(
+    78,
+    0,
+    162,
+    0.978
+  ); /* Slightly darker shade on hover */
+}
+
+/* Invite Modal Styles */
+.invite-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
+.invite-box {
+  background: white;
+  padding: 25px;
+  width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.invite-box h2 {
+  margin-top: 0;
+  color: rgba(98, 7, 202, 0.978); /* Theme primary color */
+}
+
+.invite-box p {
+  color: rgba(98, 7, 202, 0.978); /* Theme primary color */
+}
+
+.invite-box input {
+  width: 90%;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid rgba(98, 7, 202, 0.5);
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.invite-box input:focus {
+  border-color: rgba(98, 7, 202, 0.978); /* Theme primary color on focus */
+}
+
+.send-invite {
+  background-color: rgba(98, 7, 202, 0.978);
+}
+
+.send-invite:hover {
+  background-color: rgba(78, 0, 162, 0.978); /* Slightly darker shade */
+}
+
+.close-invite {
+  background-color: rgba(
+    202,
+    7,
+    7,
+    0.978
+  ); /* Close button in contrasting color */
+}
+
+.close-invite:hover {
+  background-color: rgba(162, 0, 0, 0.978); /* Darker red on hover */
+}

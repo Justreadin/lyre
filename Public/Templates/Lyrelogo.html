@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-u">
+  <head>
+    <title>Loading.....</title>
+    <meta http-equiv="refresh" content = "3; url=/load">
+    <style>
+      body {
+        background: whitesmoke;
+      }
+      .logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 200px;
+        width: 200px;
+      }
+      .footer {
+        position: absolute;
+        top: 80%;
+        color: aquamarine;
+        font-size: 30px;
+        left: 45%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img class="logo" src="/clip_images/Lyredesign.png" alt="Lyrelogo" />
+    </div>
+  </body>
+  <script>
+    window.addEventListener("load", () => {
+      document.querySelector(".logo").style.display = "block";
+    });
+  </script>
+</html>

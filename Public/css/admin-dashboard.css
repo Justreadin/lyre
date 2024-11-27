@@ -1,0 +1,106 @@
+:root {
+    --primary-color: rgb(81, 12, 192);
+    --secondary-color: white;
+    --text-color: black;
+    --bg-color: #f9f9f9;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .dashboard-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dashboard-sidebar {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    width: 250px;
+    padding-top: 70px;
+    position: fixed;
+    height: 100%;
+  }
+  
+  .dashboard-sidebar nav ul {
+    list-style-type: none;
+  }
+  
+  .dashboard-sidebar nav ul li {
+    margin: 1rem 0;
+  }
+  
+  .dashboard-sidebar nav ul li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    display: block;
+  }
+  
+  .dashboard-sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .dashboard-main {
+    margin-left: 250px;
+    padding: 80px 2rem 2rem;
+    overflow-y: auto;
+    height: 100%;
+  }
+  
+  .feedback-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .feedback-table th,
+  .feedback-table td {
+    border: 1px solid #ccc;
+    padding: 0.8rem;
+    text-align: left;
+  }
+  
+  .feedback-table th {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+  }
+  
+  .logout-btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+  }
+  
