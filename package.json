@@ -1,13 +1,19 @@
 {
   "name": "lyre",
   "version": "1.0.0",
+  "description": "Lyre - A Node.js-based chat application",
   "main": "nodeserver.js",
-  "devDependencies": {},
   "scripts": {
+    "start": "node nodeserver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["chat", "lyre", "nodejs"],
+  "author": "Your Name",
   "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4" 
+  }
 }
+
+
