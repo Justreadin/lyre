@@ -1063,7 +1063,7 @@ app.post('/api/invite', (req, res) => {
     from: 'noreply@lyre.com', // Sender address
     to: email,               // Receiver address
     subject: 'You’ve been invited to join Lyre!',
-    text: 'Join us at Lyre for an amazing experience: https://lyre.com/signup',
+    text: 'Join us at Lyre for an amazing experience: https://lyrecal.onrender.com',
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

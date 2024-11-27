@@ -193,7 +193,7 @@ function uploadProfilePicture(id) {
         alert('Profile picture uploaded successfully!');
 
         // Redirect to the user's account page immediately
-        window.location.href = `Templates/lyre.html?userId=${id}`;
+        window.location.href = `Public/Templates/lyre.html?userId=${id}`;
       } else {
         alert(`Error: ${data.message || 'Could not upload profile picture'}`);
       }
@@ -213,12 +213,12 @@ uploadBtn.addEventListener('click', () => {
 const skipBtn = document.querySelector('.skipbtn');
 skipBtn.addEventListener('click', () => {
   // Use a default placeholder profile picture
-  profilePictureDisplay.src = '/static/default-avatar.jpg';
+  profilePictureDisplay.src = 'Public/static/default-avatar.jpg';
 
   // Redirect to the user's account immediately
   const id = localStorage.getItem('user_id'); // Retrieve the user's ID from localStorage
   if (id) {
-    window.location.href = `/Templates/lyre.html?userId=${id}`;
+    window.location.href = `Public/Templates/lyre.html?userId=${id}`;
   } else {
     console.error('User ID not found for redirection');
     alert('Error: Unable to redirect to the account page.');
@@ -283,9 +283,9 @@ async function login() {
 
       // Redirect based on role
       if (data.role === 'admin') {
-        window.location.href = '/Templates/Lyre-admin.html'; // Redirect to admin dashboard
+        window.location.href = 'Public/Templates/Lyre-admin.html'; // Redirect to admin dashboard
       } else {
-        window.location.href = '/Templates/lyre.html?userId=${user.id}'; // Redirect to user chat app
+        window.location.href = 'Public/Templates/lyre.html?userId=${user.id}'; // Redirect to user chat app
       }
     } else {
       // Display error message if login fails

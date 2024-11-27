@@ -85,15 +85,15 @@ function fetchProfilePicture() {
         } else {
           console.error('Error fetching profile picture:', data.message);
           // Set a default placeholder if fetching fails
-          profilePictureElement.src = '/static/default-avatar.jpg';
-          menuPictureElement.src = '/static/default-avatar.jpg';
+          profilePictureElement.src = 'Public/static/default-avatar.jpg';
+          menuPictureElement.src = 'Public/static/default-avatar.jpg';
         }
       })
       .catch((error) => {
         console.error('Error during profile picture fetch:', error);
         // Set a default placeholder if an error occurs
-        profilePictureElement.src = '/static/default-avatar.jpg';
-        menuPictureElement.src = '/static/default-avatar.jpg';
+        profilePictureElement.src = 'Public/static/default-avatar.jpg';
+        menuPictureElement.src = 'Public/static/default-avatar.jpg';
       });
   });
 }
@@ -136,7 +136,7 @@ function displayChatContacts(contacts) {
   chatContacts.innerHTML = '';
   const aiContactHTML =
     `<div class="AI_chat">
-      <img src="/clip_images/Lyredesign.png" alt="Lyre AI Logo" />
+      <img src="Public/clip_images/Lyredesign.png" alt="Lyre AI Logo" />
       <p>Lyre AI</p>s
     </div>`;
   
@@ -153,7 +153,7 @@ function displayChatContacts(contacts) {
     contactElement.setAttribute('data-contact-id', contact.contact_id);
 
     const profileImg = document.createElement('img');
-    profileImg.src = contact.profilePicture || '/static/default-avatar.jpg';
+    profileImg.src = contact.profilePicture || 'Public/static/default-avatar.jpg';
     profileImg.alt = '';
     contactElement.appendChild(profileImg);
 
@@ -350,7 +350,7 @@ function displayChat(index, contacts) {
 
   // Set the new profile image
   const displaypic = document.createElement("img");
-  displaypic.src = `${contact.profilePicture || '/static/default-avatar.jpg'}`;
+  displaypic.src = `${contact.profilePicture || 'Public/static/default-avatar.jpg'}`;
   displayheader.appendChild(displaypic);
 
   displaydetail.innerHTML = `<p>Chat with ${contact.display_name} (${contact.country_code}${contact.phone_number})</p>`;
@@ -372,7 +372,7 @@ function displayAIChat() {
 
   // Add the new AI profile image
   const chatpic = document.createElement("img");
-  chatpic.src = "/clip_images/Lyredesign.png";
+  chatpic.src = "Public/clip_images/Lyredesign.png";
   chat_header.appendChild(chatpic);
 
   chatdetail.innerHTML = `<p>Welcome to Lyre AI chat.</p>`;
@@ -486,7 +486,7 @@ archivedContacts.forEach((contact) => {
   archiveDiv.dataset.contactId = contact.contact_id;
 
   const img = document.createElement('img');
-  img.src = contact.profilePicture || '/static/default-avatar.jpg.png';
+  img.src = contact.profilePicture || 'Public/static/default-avatar.jpg.png';
   archiveDiv.appendChild(img);
 
   const name = document.createElement('p');
@@ -583,7 +583,7 @@ function displayArchivedChat(contactId, archivedContacts) {
 
   // Clear and set the profile image
   const archivedpic = document.createElement('img');
-  archivedpic.src = `${contact.profilePicture || '/static/default-avatar.jpg'}`;
+  archivedpic.src = `${contact.profilePicture || 'Public/static/default-avatar.jpg'}`;
   archivedheader.appendChild(archivedpic);
 
   // Update chat details
@@ -715,7 +715,7 @@ function addToChatContacts(contact) {
   contactDiv.dataset.contactId = contact.contact_id;
 
   const img = document.createElement('img');
-  img.src = contact.profilePicture || '/static/default-avatar.jpg';
+  img.src = contact.profilePicture || 'Public/static/default-avatar.jpg';
 
   const details = document.createElement('div');
   details.classList.add('details');
@@ -951,11 +951,11 @@ socket.on('newContact', (newContact) => {
 
     // Create profile image
     const profileImg = document.createElement('img');
-    profileImg.src = newContact.profilePicture || '/static/default-avatar.jpg'; // Ensure default-profile.png is in the correct path
+    profileImg.src = newContact.profilePicture || 'Public/static/default-avatar.jpg'; // Ensure default-profile.png is in the correct path
     profileImg.alt = newContact.display_name || 'Unnamed Contact';
     profileImg.onerror = () => {
       // Handle broken image fallback
-      profileImg.src = '/Public/static/default-avatar.jpg';
+      profileImg.src = 'Public/static/default-avatar.jpg';
     };
     contactElement.appendChild(profileImg);
 
@@ -1261,7 +1261,7 @@ document.querySelector('.set_content .delete_acc').addEventListener('click', asy
     if (response.ok) {
       alert('Your account has been deleted successfully.');
       sessionStorage.clear(); // Clear session data
-      window.location.href = '/Templates/lyresignup'; // Redirect to signup page
+      window.location.href = 'Public/Templates/lyresignup'; // Redirect to signup page
     } else {
       const data = await response.json();
       alert(`Error: ${data.message || 'Failed to delete account'}`);
@@ -1279,7 +1279,7 @@ document.querySelector('.set_content .Logout').addEventListener('click', () => {
   sessionStorage.clear();
 
   logout()
-  window.location.href = '/Templates/lyresignup.html'; // or 'login.html', based on your use case
+  window.location.href = 'Public/Templates/lyresignup.html'; // or 'login.html', based on your use case
 });
 // Event listener for change picture button
 document.querySelector('.change_pic').addEventListener('click', () => {
