@@ -7,13 +7,16 @@
     "start": "node nodeserver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["chat", "lyre", "nodejs"],
+  "keywords": [
+    "chat",
+    "lyre",
+    "nodejs"
+  ],
   "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "socket.io": "^4.5.4" 
+    "mysql2": "^3.11.4",
+    "socket.io": "^4.5.4"
   }
 }
-
-
