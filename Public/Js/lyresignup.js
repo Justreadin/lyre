@@ -22,9 +22,6 @@ const signBtn = document.querySelector(".sign_btn");
 let regCount = 0;
 let userData = {};
 let firstname, surname, display_name, email, phone_number, password, country_code;
-let regCount = 0;
-let userData = {};
-let firstname, surname, display_name, email, phone_number, password, country_code;
 
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
