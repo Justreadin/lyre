@@ -60,34 +60,41 @@ db.connect((err) => {
 });
 
 
-// Serve the `public` folder as the root for static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'Public')));
 
-// Serve uploaded files from the `uploads` directory within `public`
-app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'Public', 'uploads')));
 
-// Serve other static files from the `static` directory within `public`
-app.use('/static', express.static(path.join(__dirname, 'public', 'static')));
+
+app.use('/static', express.static(path.join(__dirname, 'Public', 'static')));
+
+app.use('/js', express.static(path.join(__dirname, 'Public', 'Js')));
+
+app.use('/css', express.static(path.join(__dirname, 'Public', 'css')));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Home Route
+
 app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, "Public/Templates/Lyrelogo.html"));
+  res.sendFile(path.join(__dirname, 'Public/Templates/Lyrelogo.html'));
 });
 
-// Load Route
+
 app.get('/load', (req, res) => {
   setTimeout(() => {
     res.redirect('/signup');
   }, 6000);
 });
 
-// Signup Route
+
 app.get('/signup', (req, res) => {
-  res.sendFile(join(__dirname, 'Public/Templates/Lyresignup.html'));
+  res.sendFile(path.join(__dirname, 'Public/Templates/Lyresignup.html'));
 });
+
+app.use((req, res) => {
+  res.status(404).send('Page Not Found');
+});
+
 
 // Token Authentication Middleware
 function authenticate(req, res, next) {
