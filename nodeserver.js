@@ -42,7 +42,7 @@ const cors = require('cors');
 app.use(cors());
 
 const corsOptions = {
-  origin: 'https://lyrecal.onrender.com:10000', // replace with your frontend's URL
+  origin: 'https://lyrecal.onrender.com', // replace with your frontend's URL
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization'
 };
@@ -1115,7 +1115,7 @@ app.use((err, req, res, next) => {
 
 
 // Start server
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 1800;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
