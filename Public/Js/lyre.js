@@ -65,7 +65,7 @@ function fetchProfilePicture() {
     }
 
     // Fetch the profile picture from the backend
-    fetch('https://lyrecal.onrender.com/api/users/profile-picture', {
+    fetch('https://lyrecal.onrender.com:10000/api/users/profile-picture', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -80,8 +80,8 @@ function fetchProfilePicture() {
       .then((data) => {
         if (data.success) {
           // Set the profile picture's src to the returned file path
-          profilePictureElement.src = `https://lyrecal.onrender.com${data.filePath}`;
-          menuPictureElement.src = `https://lyrecal.onrender.com${data.filePath}`;
+          profilePictureElement.src = `https://lyrecal.onrender.com:10000${data.filePath}`;
+          menuPictureElement.src = `https://lyrecal.onrender.com:10000${data.filePath}`;
         } else {
           console.error('Error fetching profile picture:', data.message);
           // Set a default placeholder if fetching fails
@@ -425,7 +425,7 @@ document.addEventListener('click', () => {
 
 
 function archiveChat(contact_id) {
-  fetch('https://lyrecal.onrender.com/api/archived', {
+  fetch('https://lyrecal.onrender.com:10000/api/archived', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -453,7 +453,7 @@ function archiveChat(contact_id) {
 }
 
 function refreshArchivedContacts() {
-  fetch('https://lyrecal.onrender.com/api/archived', {
+  fetch('https://lyrecal.onrender.com:10000/api/archived', {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
     },
@@ -597,7 +597,7 @@ function displayArchivedChat(contactId, archivedContacts) {
 
 
 function refreshChatContacts() {
-  fetch('https://lyrecal.onrender.com/api/contacts', {
+  fetch('https://lyrecal.onrender.com:10000/api/contacts', {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
     },
@@ -672,7 +672,7 @@ document.addEventListener('click', (event) => {
 
 // Unarchive contact logic
 function unarchiveChat(contact_id) {
-  fetch('https://lyrecal.onrender.com/api/unarchive', {
+  fetch('https://lyrecal.onrender.com:10000/api/unarchive', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -753,7 +753,7 @@ const archivedTextInput = document.querySelector(".archived_text");
 const archivedMessageContainer = document.querySelector(".archived-content");
 
 // Initialize Socket.IO and User ID
-const socket = io.connect('https://lyrecal.onrender.com');
+const socket = io.connect('https://lyrecal.onrender.com:10000');
 const userId = sessionStorage.getItem('user_id');
 
 if (userId) {
@@ -844,7 +844,7 @@ const archiveFunctions = {
 
   async fetchHistory(contactId) {
     try {
-      const response = await fetch(`https://lyrecal.onrender.com/api/archived-messages/${contactId}`, {
+      const response = await fetch(`https://lyrecal.onrender.com:10000/api/archived-messages/${contactId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1015,7 +1015,7 @@ function handleSearch(e) {
   // Debounce: Cancel previous timeout if still typing
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    fetch(`/api/contacts/search?query=${encodeURIComponent(query)}`, {
+    fetch(`https://lyrecal.onrender.com:10000/api/contacts/search?query=${encodeURIComponent(query)}`, {
       method: 'GET',
       headers: headers,
     })
@@ -1089,7 +1089,7 @@ function handleAddContact(e) {
     return;
   }
 
-  fetch('https://lyrecal.onrender.com/api/contacts', {
+  fetch('https://lyrecal.onrender.com:10000/api/contacts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -1126,7 +1126,7 @@ function loadUserContacts() {
     return;
   }
 
-  fetch('https://lyrecal.onrender.com/api/contacts', {
+  fetch('https://lyrecal.onrender.com:10000/api/contacts', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${authToken}`
@@ -1155,7 +1155,7 @@ document.addEventListener('DOMContentLoaded', loadUserContacts);
 
 
 function deleteChat(contact_id) {
-  fetch('https://lyrecal.onrender.com/api/delete-chat', {
+  fetch('https://lyrecal.onrender.com:10000/api/delete-chat', {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1210,7 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackMessage = document.getElementById('feedbackMessage').value;
 
     try {
-      const response = await fetch('https://lyrecal.onrender.com/api/feedback', {
+      const response = await fetch('https://lyrecal.onrender.com:10000/api/feedback', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1250,7 +1250,7 @@ document.querySelector('.set_content .delete_acc').addEventListener('click', asy
   }
 
   try {
-    const response = await fetch(`https://lyrecal.onrender.com/api/users/${userId}`, {
+    const response = await fetch(`https://lyrecal.onrender.com:10000/api/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${authToken}`, // Include the token for authentication
@@ -1295,7 +1295,7 @@ function logout() {
   sessionStorage.clear(); // Clear all session-specific data
 }
 
-fetch('https://lyrecal.onrender.com/api/validate-session', {
+fetch('https://lyrecal.onrender.com:10000/api/validate-session', {
   method: 'GET',
   headers: {
     'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1322,7 +1322,7 @@ document.querySelector('.newProfilePic').addEventListener('change', function () 
     formData.append('profilePicture', file);
     formData.append('id', sessionStorage.getItem('user_id')); // Include user ID from localStorage
 
-    fetch('https://lyrecal.onrender.com/api/users/upload-profile-picture', {
+    fetch('https://lyrecal.onrender.com:10000/api/users/upload-profile-picture', {
       method: 'POST',
       body: formData,
     })
@@ -1365,7 +1365,7 @@ inviteForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const email = document.getElementById('inviteEmail').value;
 
-  fetch('https://lyrecal.onrender.com/api/invite', {
+  fetch('https://lyrecal.onrender.com:10000/api/invite', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

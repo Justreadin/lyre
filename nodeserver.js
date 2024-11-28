@@ -38,6 +38,14 @@ const upload = multer({
   }
 });
 
+const cors = require('cors');
+app.use(cors());
+
+const corsOptions = {
+  origin: 'https://lyrecal.onrender.com:10000', // replace with your frontend's URL
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
+};
 
 
 const io = socketIo(server);
@@ -1093,6 +1101,7 @@ app.get('/api/validate-session', authenticate, (req, res) => {
 });
 
 
+app.use(cors(corsOptions));
 
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
@@ -1106,7 +1115,7 @@ app.use((err, req, res, next) => {
 
 
 // Start server
-const PORT = process.env.PORT || 1800;
+const PORT = process.env.PORT || 10000;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
