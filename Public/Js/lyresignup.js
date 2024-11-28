@@ -248,7 +248,6 @@ exitBtn?.addEventListener("click", () => {
   if (Form) Form.style.display = 'block';
 });
 
-const socket = io.connect('https://lyrecal.onrender.com');
 
 // Login Function
 async function login() {
