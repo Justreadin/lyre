@@ -39,13 +39,17 @@ const upload = multer({
 });
 
 const cors = require('cors');
-app.use(cors());
 
+// Define the CORS options
 const corsOptions = {
-  origin: 'https://lyrecal.onrender.com:1800', // replace with your frontend's URL
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization'
+  origin: 'https://lyrecal.onrender.com', // The frontend's correct origin
+  methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
+  allowedHeaders: 'Content-Type,Authorization', // Allowed headers
+  credentials: true // Allows cookies to be included if needed
 };
+
+// Apply CORS middleware with the options
+app.use(cors(corsOptions));
 
 
 const io = socketIo(server);
