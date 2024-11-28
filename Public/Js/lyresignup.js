@@ -269,7 +269,7 @@ async function login() {
   }
 
   try {
-    const response = await fetch('https://lyrecal.onrender.com:443/api/auth/login', {
+    const response = await fetch('https://lyrecal.onrender.com:1800/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
