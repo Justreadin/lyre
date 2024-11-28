@@ -753,7 +753,7 @@ const archivedTextInput = document.querySelector(".archived_text");
 const archivedMessageContainer = document.querySelector(".archived-content");
 
 // Initialize Socket.IO and User ID
-const socket = io.connect('https://lyrecal.onrender.com:10000');
+const socket = io.connect('https://lyrecal.onrender.com');
 const userId = sessionStorage.getItem('user_id');
 
 if (userId) {
