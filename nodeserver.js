@@ -42,7 +42,7 @@ const cors = require('cors');
 app.use(cors());
 
 const corsOptions = {
-  origin: 'https://lyrecal.onrender.com', // replace with your frontend's URL
+  origin: 'https://lyrecal.onrender.com:1800', // replace with your frontend's URL
   methods: 'GET,POST,PUT,DELETE',
   allowedHeaders: 'Content-Type,Authorization'
 };
