@@ -22,6 +22,10 @@ const signBtn = document.querySelector(".sign_btn");
 let regCount = 0;
 let userData = {};
 let firstname, surname, display_name, email, phone_number, password, country_code;
+let regCount = 0;
+let userData = {};
+let firstname, surname, display_name, email, phone_number, password, country_code;
+
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const inputVal1 = input1.value.trim();
@@ -55,7 +59,7 @@ nextBtn.addEventListener('click', (e) => {
         case 2: // Country code, phone number, and password step
             const countryCodeElement = document.querySelector('.countrycode'); // Select the country code dropdown
             const countryCode = countryCodeElement ? countryCodeElement.value : ''; // Get the value of the selected option
-            
+
             // Check if country code is valid
             if (!countryCode) {
                 alert('Error: Enter a valid country code');
@@ -86,7 +90,7 @@ function submitSignUpForm() {
 
     console.log("Submitting userData:", userData);
 
-    fetch('/api/auth/signup', {
+    fetch('https://lyrecal.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
@@ -120,15 +124,25 @@ function updateForm() {
         { regname: 'Phone Number' }
     ];
     const labels1 = [
-      { regname: 'Surname' },
-      { regname: 'Email' },
-      { regname: 'Password' }
-  ];
+        { regname: 'Surname' },
+        { regname: 'Email' },
+        { regname: 'Password' }
+    ];
 
     regText.textContent = labels[regCount]?.regname || '';
     reg1Text.textContent = labels1[regCount]?.regname || '';
     input1.placeholder = `Enter ${regText.textContent}`;
     input2.placeholder = regCount === 1 ? 'Enter Email' : 'Enter Password';
+
+    // Set the appropriate input types for email and password fields
+    if (regCount === 1) {
+        input2.type = 'email';  // Email field
+    } else if (regCount === 2) {
+        input2.type = 'password'; // Password field
+        document.querySelector('.Country_Code').style.display = 'block'; // Show country code input
+    } else {
+        input2.type = 'text';  // Reset to text for phone number or name inputs
+    }
 
     // Show country code field on phone number step
     if (regCount === 2) {
@@ -140,6 +154,7 @@ function updateForm() {
     input1.value = '';
     input2.value = '';
 }
+
 
 
 // Function to check if `id` is set in sessionStorage, with a delay
@@ -176,7 +191,7 @@ function uploadProfilePicture(id) {
   formData.append('id', id); // Attach the confirmed ID to formData
 
   // Send POST request to upload the profile picture
-  fetch('/api/users/upload-profile-picture', {
+  fetch('https://lyrecal.onrender.com/api/users/upload-profile-picture', {
     method: 'POST',
     body: formData,
   })
@@ -236,7 +251,7 @@ exitBtn?.addEventListener("click", () => {
   if (Form) Form.style.display = 'block';
 });
 
-const socket = io.connect('http://localhost:1800');
+const socket = io.connect('https://lyrecal.onrender.com');
 
 // Login Function
 async function login() {
@@ -258,7 +273,7 @@ async function login() {
   }
 
   try {
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch('https://lyrecal.onrender.com/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -285,7 +300,7 @@ async function login() {
       if (data.role === 'admin') {
         window.location.href = 'Public/Templates/Lyre-admin.html'; // Redirect to admin dashboard
       } else {
-        window.location.href = 'Public/Templates/lyre.html?userId=${user.id}'; // Redirect to user chat app
+        window.location.href = `Public/Templates/lyre.html?userId=${sessionStorage.getItem('user_id')}`;
       }
     } else {
       // Display error message if login fails
