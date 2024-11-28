@@ -87,7 +87,7 @@ function submitSignUpForm() {
 
     console.log("Submitting userData:", userData);
 
-    fetch('https://lyrecal.onrender.com:443/api/auth/signup', {
+    fetch('https://lyrecal.onrender.com:1800/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
@@ -188,7 +188,7 @@ function uploadProfilePicture(id) {
   formData.append('id', id); // Attach the confirmed ID to formData
 
   // Send POST request to upload the profile picture
-  fetch('https://lyrecal.onrender.com:443/api/users/upload-profile-picture', {
+  fetch('https://lyrecal.onrender.com:1800/api/users/upload-profile-picture', {
     method: 'POST',
     body: formData,
   })
