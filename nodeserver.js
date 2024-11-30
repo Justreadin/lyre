@@ -1105,7 +1105,7 @@ app.get('/api/validate-session', authenticate, (req, res) => {
 });
 
 
-app.use(cors(corsOptions));
+
 
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
