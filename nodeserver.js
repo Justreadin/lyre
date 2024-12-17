@@ -42,7 +42,7 @@ const cors = require('cors');
 
 // Define the CORS options
 const corsOptions = {
-  origin: 'https://lyrecal.onrender.com', // The frontend's correct origin
+  origin: 'lyre-theta.vercel.app', // The frontend's correct origin
   methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
   allowedHeaders: 'Content-Type,Authorization', // Allowed headers
   credentials: true // Allows cookies to be included if needed
