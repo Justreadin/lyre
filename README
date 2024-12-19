@@ -1,0 +1,185 @@
+# ChatBot and Chat Application
+
+## Overview
+This project is a full-stack integrated chatbot and chat application built using **Node.js**, **HTML**, **CSS**, **JavaScript**, and **MySQL**. The application provides users with a seamless interface to interact with a chatbot and communicate with other users in real time.
+
+The web application is hosted at: [https://032d-102-89-46-251.ngrok-free.app](https://032d-102-89-46-251.ngrok-free.app)
+
+---
+
+## Features
+
+### ChatBot Functionality
+- Provides automated responses to user queries.
+- Handles general conversational prompts and FAQs.
+- Supports dynamic responses based on user input.
+
+### Chat Application
+- Real-time user-to-user messaging.
+- Secure authentication for users with roles such as **Admin** and **User**.
+- Role-based routing for admin dashboards and user chat interfaces.
+- Persistent storage of chat history in a MySQL database.
+
+### Responsive Design
+- Fully responsive design optimized for desktop and mobile devices.
+- Styled with **CSS** for a clean and intuitive user experience.
+
+### Security
+- Passwords are hashed using **bcrypt** for secure storage.
+- Authentication is managed using **JWT (JSON Web Tokens)**.
+
+---
+
+## Technologies Used
+
+### Backend
+- **Node.js**: Server-side runtime for application logic.
+- **Express.js**: Framework for building RESTful APIs.
+- **MySQL**: Relational database for user and message data storage.
+- **bcrypt**: For hashing passwords.
+- **jsonwebtoken**: For token-based authentication.
+
+### Frontend
+- **HTML**: Structure of the application.
+- **CSS**: Styling and layout.
+- **JavaScript**: Client-side interactivity and API communication.
+
+---
+
+## Installation
+
+### Prerequisites
+- **Node.js** installed (v16 or later recommended).
+- **MySQL** database server running.
+- **ngrok** for exposing the local server to the internet.
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone <repository_url>
+   cd <repository_folder>
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure environment variables:
+   Create a `.env` file in the root directory with the following:
+   ```env
+   DB_HOST=localhost
+   DB_USER=<your_mysql_user>
+   DB_PASS=<your_mysql_password>
+   DB_NAME=<your_database_name>
+   DB_PORT=3306
+   SECRET_KEY=<your_secret_key>
+   ```
+
+4. Set up the database:
+   - Import the SQL schema from `database/schema.sql` into your MySQL database.
+   - Ensure the database tables for users and messages are created.
+
+5. Start the server:
+   ```bash
+   node nodeserver.js
+   ```
+
+6. Expose the server using ngrok:
+   ```bash
+   ngrok http 1800
+   ```
+   Use the generated ngrok URL to access the application.
+
+---
+
+## Usage
+
+### User Authentication
+- Sign up as a new user.
+- Log in with your credentials to access the chat interface.
+- Admin users are redirected to the admin dashboard.
+
+### Chat Functionality
+- Access the chat interface after logging in.
+- Start a conversation with other users or interact with the chatbot.
+- View past chat history.
+
+---
+
+## Project Structure
+```
+root/
+|-- Public/             # Frontend static files
+|   |-- css/            # CSS files for styling
+|   |-- js/             # JavaScript for interactivity
+|   |-- Templates/      # HTML templates
+|   |-- clip_images/
+|   |-- static/
+|   |-- uploads/
+|
+|   
+|
+|-- nodeserver.js       # Main server file
+|-- package.json        # Project dependencies
+|-- .env                # Environment variables
+|-- README
+```
+
+---
+
+## API Endpoints
+
+### Authentication
+- **POST** `/api/auth/signup`: Register a new user.
+- **POST** `/api/auth/login`: Authenticate a user and return a JWT token.
+
+### Chat
+- **POST** `/api/chat/send`: Send a message.
+- **GET** `/api/chat/history`: Fetch chat history for a user.
+
+### Admin
+- **GET** `/api/users`: Fetch a list of registered users.
+- **DELETE** `/api/user/:id`: Delete a user.
+
+---
+
+## Deployment
+The application can be deployed on platforms like **Heroku**, **AWS**, **Google Cloud**, or **OpenShift**. For local hosting, ngrok is used to expose the application to the internet.
+
+---
+
+## Troubleshooting
+
+### Common Issues
+1. **Database Connection Errors**:
+   - Ensure MySQL is running and the credentials in `.env` are correct.
+
+2. **Static Files Not Found**:
+   - Check the `express.static` configuration in `nodeserver.js`.
+
+3. **ngrok URL Not Working**:
+   - Ensure the server is running locally before starting ngrok.
+
+---
+
+## Future Enhancements
+- Add user profile management.
+- Integrate AI-powered responses for the chatbot.
+- Implement file sharing in chat.
+- Enable push notifications for new messages.
+
+---
+
+---
+
+## Acknowledgments
+- **Node.js** and **Express.js** documentation for backend development.
+- **MySQL** for database management.
+- **ngrok** for local server exposure.
+- Tutorials and guides from the web development community.
+
+---
+
+For any questions or support, please contact dave.400g@gmail.com/ +2349041385402.
+
