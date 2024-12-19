@@ -87,7 +87,7 @@ function submitSignUpForm() {
 
     console.log("Submitting userData:", userData);
 
-    fetch('https://lyre-theta.vercel.app:1800/api/auth/signup', {
+    fetch('https://032d-102-89-46-251.ngrok-free.app/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
@@ -188,7 +188,7 @@ function uploadProfilePicture(id) {
   formData.append('id', id); // Attach the confirmed ID to formData
 
   // Send POST request to upload the profile picture
-  fetch('https://lyre-theta.vercel.app:1800/api/users/upload-profile-picture', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/users/upload-profile-picture', {
     method: 'POST',
     body: formData,
   })
@@ -205,7 +205,7 @@ function uploadProfilePicture(id) {
         alert('Profile picture uploaded successfully!');
 
         // Redirect to the user's account page immediately
-        window.location.href = `Public/Templates/lyre.html?userId=${id}`;
+        window.location.href = `/Templates/lyre.html?userId=${id}`;
       } else {
         alert(`Error: ${data.message || 'Could not upload profile picture'}`);
       }
@@ -225,12 +225,12 @@ uploadBtn.addEventListener('click', () => {
 const skipBtn = document.querySelector('.skipbtn');
 skipBtn.addEventListener('click', () => {
   // Use a default placeholder profile picture
-  profilePictureDisplay.src = 'Public/static/default-avatar.jpg';
+  profilePictureDisplay.src = '/static/default-avatar.jpg';
 
   // Redirect to the user's account immediately
   const id = localStorage.getItem('user_id'); // Retrieve the user's ID from localStorage
   if (id) {
-    window.location.href = `Public/Templates/lyre.html?userId=${id}`;
+    window.location.href = `/Templates/lyre.html?userId=${id}`;
   } else {
     console.error('User ID not found for redirection');
     alert('Error: Unable to redirect to the account page.');
@@ -269,7 +269,7 @@ async function login() {
   }
 
   try {
-    const response = await fetch('https://lyre-theta.vercel.app:1800/api/auth/login', {
+    const response = await fetch('https://032d-102-89-46-251.ngrok-free.app/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -290,13 +290,13 @@ async function login() {
 
       alert('Login successful');
       console.log('User joined with ID:', sessionStorage.getItem('user_id'));
-      socket.emit('join', sessionStorage.getItem('user_id'));
+      //socket.emit('join', sessionStorage.getItem('user_id'));
 
       // Redirect based on role
       if (data.role === 'admin') {
-        window.location.href = 'Public/Templates/Lyre-admin.html'; // Redirect to admin dashboard
+        window.location.href = 'https://032d-102-89-46-251.ngrok-free.app/admin'; // Redirect to admin dashboard
       } else {
-        window.location.href = `Public/Templates/lyre.html?userId=${sessionStorage.getItem('user_id')}`;
+        window.location.href = `https://032d-102-89-46-251.ngrok-free.app/lyre?userId=${sessionStorage.getItem('user_id')}`;
       }
     } else {
       // Display error message if login fails

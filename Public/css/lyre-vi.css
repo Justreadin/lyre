@@ -3,7 +3,7 @@
     padding-top: 0px;
     padding-bottom: 10px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .container {
@@ -34,7 +34,7 @@
   .menubar {
     position: absolute;
     width: 30%;
-    top: 0%;
+    top: -2%;
     height: 100%;
     left: 0.5%;
     z-index: 555;
@@ -172,14 +172,14 @@
     width: 30px;
     color: white;
     bottom: 10px;
-    top: 260px;
+    top: 360px;
     left: 0px;
   }
   .setting_box {
     display: none;
     top: 300px;
     left: 50%;
-    position: absolute;
+    position: fixed;
     background: rgba(255, 255, 255, 0.926);
     height: 80%;
     width: 85%;
@@ -224,15 +224,25 @@
   }
   .setting_box .set_header .exit-btn {
     display: block;
-    color: rgb(31, 2, 105);
+    color: rgb(173, 145, 245);
     margin-top: 10px;
-    margin-right: 20px;
     height: 30px;
     width: 30px;
     align-self: flex-end;
     justify-self: flex-end;
-    float: right;
+    float: left;
   }
+  
+  @media (max-width: 600px) {
+    .setting_box .set_header .exit-btn {
+      margin-right: 10px; /* Reduce margin for smaller screens */
+      padding-right: 10px; /* Adjust padding to fit better */
+      float: none; /* Avoid unexpected alignment issues */
+      margin-left: auto; /* Center horizontally if needed */
+      margin-right: auto;
+    }
+  }
+  
   .setting_box ul {
     margin-top: 80px;
     margin-bottom: 100px;
@@ -502,10 +512,16 @@
     width: 25px;
   }
 
-  .Chatsection .col,
-  .archived .archive_col {
+  .Chatsection .col {
     overflow-x: hidden;
     height: 410px;
+    width: 100%;
+    margin-bottom: 0px;
+    overflow-y: auto;
+  }
+  .archived .archive_col {
+    overflow-x: hidden;
+    height: 550px;
     width: 100%;
     margin-bottom: 0px;
     overflow-y: auto;
@@ -789,14 +805,18 @@
 
   .chat-box .chatsbox,
   .group_chat .group-content,
-  .archived_chat .archived-content,
   .display-chat .display-content {
     margin-top: 30px;
     padding: 20px 20px 70px;
     overflow-y: auto;
     height: 450px;
   }
-
+  .archived_chat .archived-content {
+    margin-top: 30px;
+    padding: 20px 20px 70px;
+    overflow-y: auto;
+    height: 450px;
+  }
   .chat-box .chatsbox .chatdetail,
   .group_chat .group-content .groupdetail,
   .archived_chat .archived-content .archivedetail,

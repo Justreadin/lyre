@@ -65,7 +65,7 @@ function fetchProfilePicture() {
     }
 
     // Fetch the profile picture from the backend
-    fetch('https://lyre-theta.vercel.app:1800/api/users/profile-picture', {
+    fetch('https://032d-102-89-46-251.ngrok-free.app/api/users/profile-picture', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -80,20 +80,20 @@ function fetchProfilePicture() {
       .then((data) => {
         if (data.success) {
           // Set the profile picture's src to the returned file path
-          profilePictureElement.src = `https://lyre-theta.vercel.app:1800${data.filePath}`;
-          menuPictureElement.src = `https://lyre-theta.vercel.app:1800${data.filePath}`;
+          profilePictureElement.src = `https://032d-102-89-46-251.ngrok-free.app${data.filePath}`;
+          menuPictureElement.src = `https://032d-102-89-46-251.ngrok-free.app${data.filePath}`;
         } else {
           console.error('Error fetching profile picture:', data.message);
           // Set a default placeholder if fetching fails
-          profilePictureElement.src = 'Public/static/default-avatar.jpg';
-          menuPictureElement.src = 'Public/static/default-avatar.jpg';
+          profilePictureElement.src = '/static/default-avatar.jpg';
+          menuPictureElement.src = '/static/default-avatar.jpg';
         }
       })
       .catch((error) => {
         console.error('Error during profile picture fetch:', error);
         // Set a default placeholder if an error occurs
-        profilePictureElement.src = 'Public/static/default-avatar.jpg';
-        menuPictureElement.src = 'Public/static/default-avatar.jpg';
+        profilePictureElement.src = '/static/default-avatar.jpg';
+        menuPictureElement.src = '/static/default-avatar.jpg';
       });
   });
 }
@@ -136,8 +136,8 @@ function displayChatContacts(contacts) {
   chatContacts.innerHTML = '';
   const aiContactHTML =
     `<div class="AI_chat">
-      <img src="Public/clip_images/Lyredesign.png" alt="Lyre AI Logo" />
-      <p>Lyre AI</p>s
+      <img src="/clip_images/Lyredesign.png" alt="" />
+      <p>Lyre AI</p>
     </div>`;
   
     chatContacts.innerHTML = aiContactHTML;
@@ -153,7 +153,7 @@ function displayChatContacts(contacts) {
     contactElement.setAttribute('data-contact-id', contact.contact_id);
 
     const profileImg = document.createElement('img');
-    profileImg.src = contact.profilePicture || 'Public/static/default-avatar.jpg';
+    profileImg.src = contact.profilePicture || '/static/default-avatar.jpg';
     profileImg.alt = '';
     contactElement.appendChild(profileImg);
 
@@ -350,7 +350,7 @@ function displayChat(index, contacts) {
 
   // Set the new profile image
   const displaypic = document.createElement("img");
-  displaypic.src = `${contact.profilePicture || 'Public/static/default-avatar.jpg'}`;
+  displaypic.src = `${contact.profilePicture || '/static/default-avatar.jpg'}`;
   displayheader.appendChild(displaypic);
 
   displaydetail.innerHTML = `<p>Chat with ${contact.display_name} (${contact.country_code}${contact.phone_number})</p>`;
@@ -372,7 +372,7 @@ function displayAIChat() {
 
   // Add the new AI profile image
   const chatpic = document.createElement("img");
-  chatpic.src = "Public/clip_images/Lyredesign.png";
+  chatpic.src = "/clip_images/Lyredesign.png";
   chat_header.appendChild(chatpic);
 
   chatdetail.innerHTML = `<p>Welcome to Lyre AI chat.</p>`;
@@ -425,7 +425,7 @@ document.addEventListener('click', () => {
 
 
 function archiveChat(contact_id) {
-  fetch('https://lyre-theta.vercel.app:1800/api/archived', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/archived', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -453,7 +453,7 @@ function archiveChat(contact_id) {
 }
 
 function refreshArchivedContacts() {
-  fetch('https://lyre-theta.vercel.app:1800/api/archived', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/archived', {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
     },
@@ -486,7 +486,7 @@ archivedContacts.forEach((contact) => {
   archiveDiv.dataset.contactId = contact.contact_id;
 
   const img = document.createElement('img');
-  img.src = contact.profilePicture || 'Public/static/default-avatar.jpg.png';
+  img.src = contact.profilePicture || '/static/default-avatar.jpg.png';
   archiveDiv.appendChild(img);
 
   const name = document.createElement('p');
@@ -583,7 +583,7 @@ function displayArchivedChat(contactId, archivedContacts) {
 
   // Clear and set the profile image
   const archivedpic = document.createElement('img');
-  archivedpic.src = `${contact.profilePicture || 'Public/static/default-avatar.jpg'}`;
+  archivedpic.src = `${contact.profilePicture || '/static/default-avatar.jpg'}`;
   archivedheader.appendChild(archivedpic);
 
   // Update chat details
@@ -597,7 +597,7 @@ function displayArchivedChat(contactId, archivedContacts) {
 
 
 function refreshChatContacts() {
-  fetch('https://lyre-theta.vercel.app:1800/api/contacts', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/contacts', {
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
     },
@@ -672,7 +672,7 @@ document.addEventListener('click', (event) => {
 
 // Unarchive contact logic
 function unarchiveChat(contact_id) {
-  fetch('https://lyre-theta.vercel.app:1800/api/unarchive', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/unarchive', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -715,7 +715,7 @@ function addToChatContacts(contact) {
   contactDiv.dataset.contactId = contact.contact_id;
 
   const img = document.createElement('img');
-  img.src = contact.profilePicture || 'Public/static/default-avatar.jpg';
+  img.src = contact.profilePicture || '/static/default-avatar.jpg';
 
   const details = document.createElement('div');
   details.classList.add('details');
@@ -753,7 +753,7 @@ const archivedTextInput = document.querySelector(".archived_text");
 const archivedMessageContainer = document.querySelector(".archived-content");
 
 // Initialize Socket.IO and User ID
-const socket = io.connect('https://lyre-theta.vercel.app');
+const socket = io.connect('https://032d-102-89-46-251.ngrok-free.app');
 const userId = sessionStorage.getItem('user_id');
 
 if (userId) {
@@ -786,7 +786,7 @@ const chatFunctions = {
 
   async fetchChatHistory(contactId) {
     try {
-      const response = await fetch(`https://lyre-theta.vercel.app:1800/api/messages/${contactId}`, {
+      const response = await fetch(`https://032d-102-89-46-251.ngrok-free.app/api/messages/${contactId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -844,7 +844,7 @@ const archiveFunctions = {
 
   async fetchHistory(contactId) {
     try {
-      const response = await fetch(`https://lyre-theta.vercel.app:1800/api/archived-messages/${contactId}`, {
+      const response = await fetch(`https://032d-102-89-46-251.ngrok-free.app/api/archived-messages/${contactId}`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -951,11 +951,11 @@ socket.on('newContact', (newContact) => {
 
     // Create profile image
     const profileImg = document.createElement('img');
-    profileImg.src = newContact.profilePicture || 'Public/static/default-avatar.jpg'; // Ensure default-profile.png is in the correct path
+    profileImg.src = newContact.profilePicture || '/static/default-avatar.jpg'; // Ensure default-profile.png is in the correct path
     profileImg.alt = newContact.display_name || 'Unnamed Contact';
     profileImg.onerror = () => {
       // Handle broken image fallback
-      profileImg.src = 'Public/static/default-avatar.jpg';
+      profileImg.src = '/static/default-avatar.jpg';
     };
     contactElement.appendChild(profileImg);
 
@@ -1015,7 +1015,7 @@ function handleSearch(e) {
   // Debounce: Cancel previous timeout if still typing
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    fetch(`https://lyre-theta.vercel.app:1800/api/contacts/search?query=${encodeURIComponent(query)}`, {
+    fetch(`https://032d-102-89-46-251.ngrok-free.app/api/contacts/search?query=${encodeURIComponent(query)}`, {
       method: 'GET',
       headers: headers,
     })
@@ -1089,7 +1089,7 @@ function handleAddContact(e) {
     return;
   }
 
-  fetch('https://lyre-theta.vercel.app:1800/api/contacts', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/contacts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -1126,7 +1126,7 @@ function loadUserContacts() {
     return;
   }
 
-  fetch('https://lyre-theta.vercel.app:1800/api/contacts', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/contacts', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${authToken}`
@@ -1155,7 +1155,7 @@ document.addEventListener('DOMContentLoaded', loadUserContacts);
 
 
 function deleteChat(contact_id) {
-  fetch('https://lyre-theta.vercel.app:1800/api/delete-chat', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/delete-chat', {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1210,7 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackMessage = document.getElementById('feedbackMessage').value;
 
     try {
-      const response = await fetch('https://lyre-theta.vercel.app:1800/api/feedback', {
+      const response = await fetch('https://032d-102-89-46-251.ngrok-free.app/api/feedback', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1250,7 +1250,7 @@ document.querySelector('.set_content .delete_acc').addEventListener('click', asy
   }
 
   try {
-    const response = await fetch(`https://lyre-theta.vercel.app:1800/api/users/${userId}`, {
+    const response = await fetch(`https://032d-102-89-46-251.ngrok-free.app/api/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${authToken}`, // Include the token for authentication
@@ -1261,7 +1261,7 @@ document.querySelector('.set_content .delete_acc').addEventListener('click', asy
     if (response.ok) {
       alert('Your account has been deleted successfully.');
       sessionStorage.clear(); // Clear session data
-      window.location.href = 'Public/Templates/lyresignup'; // Redirect to signup page
+      window.location.href = 'http:localhost://1800/signup'; // Redirect to signup page
     } else {
       const data = await response.json();
       alert(`Error: ${data.message || 'Failed to delete account'}`);
@@ -1279,7 +1279,7 @@ document.querySelector('.set_content .Logout').addEventListener('click', () => {
   sessionStorage.clear();
 
   logout()
-  window.location.href = 'Public/Templates/lyresignup.html'; // or 'login.html', based on your use case
+  window.location.href = 'http:localhost://1800/signup'; // or 'login.html', based on your use case
 });
 // Event listener for change picture button
 document.querySelector('.change_pic').addEventListener('click', () => {
@@ -1295,7 +1295,7 @@ function logout() {
   sessionStorage.clear(); // Clear all session-specific data
 }
 
-fetch('https://lyre-theta.vercel.app:1800/api/validate-session', {
+fetch('https://032d-102-89-46-251.ngrok-free.app/api/validate-session', {
   method: 'GET',
   headers: {
     'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`,
@@ -1322,7 +1322,7 @@ document.querySelector('.newProfilePic').addEventListener('change', function () 
     formData.append('profilePicture', file);
     formData.append('id', sessionStorage.getItem('user_id')); // Include user ID from localStorage
 
-    fetch('https://lyre-theta.vercel.app:1800/api/users/upload-profile-picture', {
+    fetch('https://032d-102-89-46-251.ngrok-free.app/api/users/upload-profile-picture', {
       method: 'POST',
       body: formData,
     })
@@ -1365,7 +1365,7 @@ inviteForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const email = document.getElementById('inviteEmail').value;
 
-  fetch('https://lyre-theta.vercel.app:1800/api/invite', {
+  fetch('https://032d-102-89-46-251.ngrok-free.app/api/invite', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

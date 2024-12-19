@@ -38,11 +38,14 @@ const upload = multer({
   }
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const cors = require('cors');
 
 // Define the CORS options
 const corsOptions = {
-  origin: 'lyre-theta.vercel.app', // The frontend's correct origin
+  origin: 'https://032d-102-89-46-251.ngrok-free.app', // The frontend's correct origin
   methods: 'GET,POST,PUT,DELETE', // Allowed HTTP methods
   allowedHeaders: 'Content-Type,Authorization', // Allowed headers
   credentials: true // Allows cookies to be included if needed
@@ -73,24 +76,14 @@ db.connect((err) => {
 
 
 app.use(express.static(path.join(__dirname, 'Public')));
-
 app.use('/uploads', express.static(path.join(__dirname, 'Public', 'uploads')));
-
-
 app.use('/static', express.static(path.join(__dirname, 'Public', 'static')));
-
 app.use('/js', express.static(path.join(__dirname, 'Public', 'Js')));
-
 app.use('/css', express.static(path.join(__dirname, 'Public', 'css')));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'Public/Templates/Lyrelogo.html'));
 });
-
 
 app.get('/load', (req, res) => {
   setTimeout(() => {
@@ -98,13 +91,12 @@ app.get('/load', (req, res) => {
   }, 6000);
 });
 
-
 app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'Public/Templates/Lyresignup.html'));
 });
 
-app.use((req, res) => {
-  res.status(404).send('Page Not Found');
+app.get('/lyre', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Public/Templates/lyre.html'));
 });
 
 
@@ -218,6 +210,7 @@ app.post('/api/auth/signup', async (req, res) => {
 
 
 app.post('/api/auth/login', async (req, res) => {
+  console.log('Request received:', req.body);
   try {
     const { email, password } = req.body;
 
@@ -262,7 +255,7 @@ app.post('/api/auth/login', async (req, res) => {
           { expiresIn: '1h' }
         );
         console.log("Token generated successfully");
-        
+
         return res.json({
           success: true,
           message: 'Login successful',
@@ -939,62 +932,62 @@ io.on('connection', (socket) => {
 
     // Validate input
     if (!senderId || !receiverId || !message) {
-        socket.emit('messageError', { message: 'Invalid message data' });
-        return;
+      socket.emit('messageError', { message: 'Invalid message data' });
+      return;
     }
 
     try {
-        // Check if the sender exists in the receiver's contact list
-        const contactCheckQuery = `
+      // Check if the sender exists in the receiver's contact list
+      const contactCheckQuery = `
             SELECT COUNT(*) AS count 
             FROM contacts 
             WHERE user_id = ? AND contact_id = ?
         `;
-        const [result] = await db.promise().query(contactCheckQuery, [receiverId, senderId]);
+      const [result] = await db.promise().query(contactCheckQuery, [receiverId, senderId]);
 
-        // Add sender to the receiver's contact list if not already present
-        if (result[0].count === 0) {
-            const addContactQuery = `
+      // Add sender to the receiver's contact list if not already present
+      if (result[0].count === 0) {
+        const addContactQuery = `
                 INSERT INTO contacts (user_id, contact_id, display_name, profilePicture, phone_number, country_code) 
                 SELECT ?, id, display_name, profilePicture, phone_number, country_code 
                 FROM users 
                 WHERE id = ?
             `;
-            await db.promise().query(addContactQuery, [receiverId, senderId]);
-            console.log(`User ${senderId} added to ${receiverId}'s contact list.`);
+        await db.promise().query(addContactQuery, [receiverId, senderId]);
+        console.log(`User ${senderId} added to ${receiverId}'s contact list.`);
 
-            // Fetch the sender's contact details
-            const contactDetailsQuery = `
+        // Fetch the sender's contact details
+        const contactDetailsQuery = `
                 SELECT contact_id, display_name, profilePicture, phone_number, country_code 
                 FROM contacts 
                 WHERE user_id = ? AND contact_id = ?
             `;
-            const [contactDetails] = await db.promise().query(contactDetailsQuery, [receiverId, senderId]);
+        const [contactDetails] = await db.promise().query(contactDetailsQuery, [receiverId, senderId]);
 
-            // Emit the new contact details to the receiver if they are connected
-            if (connectedUsers[receiverId]) {
-                io.to(connectedUsers[receiverId]).emit('newContact', contactDetails[0]);
-            }
+        // Emit the new contact details to the receiver if they are connected
+        if (connectedUsers[receiverId]) {
+          io.to(connectedUsers[receiverId]).emit('newContact', contactDetails[0]);
         }
+      }
 
-        // Insert the message into the database
-        const messageInsertQuery = `
+      // Insert the message into the database
+      const messageInsertQuery = `
             INSERT INTO messages (senderId, receiverId, content, delivered) 
             VALUES (?, ?, ?, FALSE)
         `;
-        await db.promise().query(messageInsertQuery, [senderId, receiverId, message]);
+      await db.promise().query(messageInsertQuery, [senderId, receiverId, message]);
 
-        // Emit the message to the receiver if they are connected
-        if (connectedUsers[receiverId]) {
-            io.to(connectedUsers[receiverId]).emit('receiveMessage', { senderId, message });
-        }
+      // Emit the message to the receiver if they are connected
+      if (connectedUsers[receiverId]) {
+        io.to(connectedUsers[receiverId]).emit('receiveMessage', { senderId, message });
+      }
 
-        console.log(`Message sent from ${senderId} to ${receiverId}: ${message}`);
+      console.log(`Message sent from ${senderId} to ${receiverId}: ${message}`);
     } catch (err) {
-        console.error('Error sending message:', err);
-        socket.emit('messageError', { message: 'Failed to send message. Please try again.' });
+      console.error('Error sending message:', err);
+      socket.emit('messageError', { message: 'Failed to send message. Please try again.' });
     }
-});
+  });
 
   // Archive messages
   socket.on('archiveMessage', (data) => {
@@ -1043,11 +1036,11 @@ io.on('connection', (socket) => {
     const disconnectedUser = Object.keys(connectedUsers).find(
       (userId) => connectedUsers[userId] === socket.id
     );
-  
+
     if (disconnectedUser) {
       delete connectedUsers[disconnectedUser];
       console.log(`User ${disconnectedUser} disconnected.`);
-  
+
       const updateLastActivityQuery = `
         UPDATE users SET last_active = NOW() WHERE id = ?
       `;
@@ -1082,7 +1075,7 @@ app.post('/api/invite', (req, res) => {
     from: 'noreply@lyre.com', // Sender address
     to: email,               // Receiver address
     subject: 'You’ve been invited to join Lyre!',
-    text: 'Join us at Lyre for an amazing experience: https://lyre-theta.vercel.app',
+    text: 'Join us at Lyre for an amazing experience: https://032d-102-89-46-251.ngrok-free.app',
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -1098,9 +1091,9 @@ app.post('/api/invite', (req, res) => {
 
 app.get('/api/validate-session', authenticate, (req, res) => {
   if (req.user) {
-      res.json({ success: true, userId: req.user.id });
+    res.json({ success: true, userId: req.user.id });
   } else {
-      res.status(401).json({ success: false, message: 'Invalid session.' });
+    res.status(401).json({ success: false, message: 'Invalid session.' });
   }
 });
 
@@ -1117,6 +1110,9 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).json({ error: err.message || 'Internal Server Error' });
 });
 
+app.use((req, res) => {
+  res.status(404).send('Page Not Found');
+});
 
 // Start server
 const PORT = process.env.PORT || 1800;
@@ -1125,214 +1121,3 @@ server.listen(PORT, () => {
 });
 
 module.exports = app;
-
-
-
-
-/*
-// Authentication middleware
-function authenticate(req, res, next) {
-  const token = req.headers.authorization;
-
-  db.query(`SELECT * FROM users WHERE token = ?`, [token], (err, results) => {
-      if (err || results.length === 0) {
-          return res.json({ success: false, message: 'Invalid token' });
-      }
-
-      req.user = results[0];
-      next();
-  });
-}
-
-// Get users
-app.get('/api/users', authenticate, (req, res) => {
-  const query = 'SELECT * FROM users WHERE id != ?';
-  db.query(query, [req.user.id], (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error fetching users');
-    }
-    res.send(results);
-  });
-});
-
-// Send message
-app.post('/api/chats/message', authenticate, (req, res) => {
-  const { id, message } = req.body;
-  const query = 'INSERT INTO messages SET ?';
-  db.query(query, { id, message }, (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error sending message');
-    }
-    io.emit('message', { id, message });
-    res.send('Message sent successfully');
-  });
-});
-
-// Get messages
-app.get('/api/chats/messages', authenticate, (req, res) => {
-  const query = 'SELECT * FROM messages WHERE id = ?';
-  db.query(query, [req.user.id], (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error fetching messages');
-    }
-    res.send(results);
-  });
-});
-
-// Add contact
-app.post('/api/contacts/add', authenticate, (req, res) => {
-  const { contactId } = req.body;
-  const query = 'INSERT INTO contacts SET ?';
-  db.query(query, { id: req.user.id, contactId }, (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error adding contact');
-    }
-    res.send('Contact added successfully');
-  });
-});
-
-
-
-// Invite user
-app.post('/api/contacts/invite', authenticate, (req, res) => {
-  const { phoneNumber } = req.body;
-  const query = 'SELECT * FROM users WHERE phoneNumber = ?';
-  db.query(query, [phoneNumber], (err, results) => {
-    if (err || results.length === 0) {
-      return res.status(404).send('User  not found');
-  }
-  const query = 'INSERT INTO invitations SET ?';
-  db.query(query, { 
-    id: req.user.id, 
-    invitedid: results[0].id, 
-    phoneNumber 
-  }, (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error inviting user');
-    }
-    res.send('User invited successfully');
-  });
-});
-})
-// Accept invitation
-app.post('/api/contacts/accept-invite', authenticate, (req, res) => {
-  const { invitationId } = req.body;
-  const query = 'UPDATE invitations SET status = ? WHERE id = ?';
-  db.query(query, ['accepted', invitationId], (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error accepting invitation');
-    }
-    res.send('Invitation accepted successfully');
-  });
-});
-
-// Decline invitation
-app.post('/api/contacts/decline-invite', authenticate, (req, res) => {
-  const { invitationId } = req.body;
-  const query = 'UPDATE invitations SET status = ? WHERE id = ?';
-  db.query(query, ['declined', invitationId], (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error declining invitation');
-    }
-    res.send('Invitation declined successfully');
-  });
-});
-app.delete('/api/chats/message/:id', authenticate, (req, res) => {
-    const messageId = socket.io;
-    const query = 'UPDATE messages SET deleted_at = NOW() WHERE id = ?';
-    db.query(query, [messageId], (err, results) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error deleting message');
-      }
-      const chatHistoryQuery = 'UPDATE chat_history SET deleted_at = NOW() WHERE message_id = ?';
-      db.query(chatHistoryQuery, [messageId], (err, results) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send('Error updating chat history');
-        }
-        res.send('Message deleted successfully');
-      });
-    });
-  });
-
-// WebSocket connection
-io.on('connection', (socket) => {
-  console.log('Client connected');
-
-  // Receive message
-  socket.on('message', (data) => {
-    const { id, message } = data;
-    const query = 'INSERT INTO messages SET ?';
-    db.query(query, { id, message }, (err, results) => {
-      if (err) {
-        console.error(err);
-      }
-    });
-    io.emit('message', data);
-  });
-
-  // Disconnect
-  socket.on('disconnect', () => {
-    console.log('Client disconnected');
-  });
-});
-*/
-
-/*const PORT = process.env.PORT || 8000;
-server.listen(PORT, () => {
-    console.log(`Server is listening on port: ${PORT}`)
-}) */
-
-/*const http = require('http');
-const fs = require('fs');
-const path = require('node:path');
-
-const server = http.createServer((req, res) => {
-    if (req.method === 'GET' && req.url === '/') {
-        const filePath = path.join(__dirname, 'electron.html');
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                res.writeHead(500, { 'Content-Type': 'text/plain' });
-                res.end('Internal Server Error');
-            } else {
-                res.writeHead(404, { 'Content-Type': 'text/html' });
-                res.end('Not Found');
-            }
-        })
-    }
-})
-
-
-/*import express from "express";
-const app = express();
-const { Server } = require("node:http").createServer(app);
-const io = require('socket.io')
-(Server);
-
-app.get("/", (req, res) => {
-    res.sendFile("chat.html")
-})
-console.log(__dirname)
-io.on('connnection', (socket) => {
-    console.log('New connection established');
-
-    socket.on('new-message', (message) => {
-        io.emit('new-message', message);
-    })
-
-    socket.on('disconnect', () => {
-        console.log("User disconnected");
-    })
-})
-const port = 8000;
-Server.listen(port, () => { 
-    console.log(`Lyre listening on port: ${port}`);
-})*/

@@ -1,0 +1,15 @@
+Recovery codes for my ngrok account
+WZ6V2MMN38
+S42C8Y7S6U
+BY64X9ZZJC
+GJ6X6PFVAS
+78NU83QCWD
+M8XDTDH7ZT
+Y75PX4VS3Q
+4QQ9KC9SAJ
+9ZEFZVR53W
+CBCBSFKRWR
+
+my ngrok auth token: ngrok config add-authtoken 2qQOkt6oXsp5JYHOAP30cH55wCY_6NN8K9hQVdWWhDXg3u7v7
+
+ngrok http 1800
