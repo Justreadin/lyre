@@ -74,22 +74,21 @@ ngrok http 1800
 
 📡 API Endpoints
 
-Endpoint	Method	Description	Auth Required
-
-/api/auth/signup	POST	Register a new user	No
-/api/auth/login	POST	Authenticate user, return JWT	No
-/api/users/upload-profile-picture	POST	Upload user profile picture	Yes
-/api/users/profile-picture	GET	Get profile picture	Yes
-/api/contacts	POST	Add a new contact	Yes
-/api/contacts	GET	Get all contacts	Yes
-/api/archived	POST	Archive contact	Yes
-/api/archived	GET	Get archived contacts	Yes
-/api/unarchive	POST	Unarchive a contact	Yes
-/api/messages	POST	Send message	Yes
-/api/messages/:contactId	GET	Get messages with a contact	Yes
-/api/messages/read/:contactId	PUT	Mark messages as read	Yes
-/api/feedback	POST	Submit feedback	No
-
+| Endpoint                          | Method | Description                  | Auth Required |
+|----------------------------------|--------|------------------------------|---------------|
+| /api/auth/signup                 | POST   | Register a new user           | No            |
+| /api/auth/login                  | POST   | Authenticate user, return JWT| No            |
+| /api/users/upload-profile-picture| POST   | Upload user profile picture   | Yes           |
+| /api/users/profile-picture       | GET    | Get profile picture           | Yes           |
+| /api/contacts                   | POST   | Add a new contact             | Yes           |
+| /api/contacts                   | GET    | Get all contacts              | Yes           |
+| /api/archived                  | POST   | Archive contact               | Yes           |
+| /api/archived                  | GET    | Get archived contacts         | Yes           |
+| /api/unarchive                 | POST   | Unarchive a contact           | Yes           |
+| /api/messages                  | POST   | Send message                  | Yes           |
+| /api/messages/:contactId       | GET    | Get messages with a contact   | Yes           |
+| /api/messages/read/:contactId  | PUT    | Mark messages as read         | Yes           |
+| /api/feedback                  | POST   | Submit feedback               | No            |
 
 
 ---
