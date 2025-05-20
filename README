@@ -1,12 +1,5 @@
 # 🚀 Lyre Chat Application
 
-[![Node.js](https://img.shields.io/badge/Node.js-v16+-green?logo=node.js&style=for-the-badge)](https://nodejs.org/) 
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql&style=for-the-badge)](https://www.mysql.com/) 
-[![Express](https://img.shields.io/badge/Express.js-4.x-yellow?logo=express&style=for-the-badge)](https://expressjs.com/)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-
----
-
 ## 🎯 **Overview**
 
 Lyre Chat is a **full-stack**, **real-time chat app** featuring an integrated **AI-powered chatbot** — built with **Node.js**, **Express**, and **MySQL**.
@@ -17,8 +10,6 @@ This app provides:
 - 💬 Real-time messaging between users
 - 🤖 Intelligent chatbot with dynamic responses
 - 📱 Fully responsive UI for desktop & mobile
-
-🔗 **Live Demo:** [https://032d-102-89-46-251.ngrok-free.app](https://032d-102-89-46-251.ngrok-free.app)
 
 ---
 
